@@ -9,3 +9,6 @@
  * Version: 1.0
  * Text Domain: woo-email-text-customizer
  */
+
+require_once 'woo-email-text-customizer-core.php';
+require_once 'woo-email-text-customizer-ui.php';
