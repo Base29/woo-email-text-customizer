@@ -35,6 +35,7 @@ class WETC {
 
 		// Plugin core class instance
 		$core = new WETCCore;
+        $core->wetcCoreHooks();
 
 	}
 
@@ -54,6 +55,7 @@ class WETC {
 		require_once 'woo-email-text-customizer-ui.php';
 
 	}
+
 
 }
 
