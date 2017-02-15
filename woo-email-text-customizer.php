@@ -39,6 +39,13 @@ class WETC {
 
 	}
 
+    public function WETCPluginUI(){
+
+        // Plugin UI class instance
+        $ui = new WETCUI;
+
+    }
+
 	/**
 	 * Required stuff
 	 */
