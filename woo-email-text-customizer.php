@@ -12,6 +12,8 @@
 
 /**
  * Class WETC
+ *
+ * Main class
  */
 class WETC {
 
@@ -26,6 +28,9 @@ class WETC {
 		// Add loading of plugin functions
 		$this->wetcPluginLoad();
 
+		// Add plugin UI components
+		$this->wetcPluginUI();
+
 	}
 
 	/**
@@ -33,15 +38,17 @@ class WETC {
 	 */
 	public function wetcPluginLoad() {
 
-		// Plugin core class instance
+		/** Plugin core class instance */
 		$core = new WETCCore;
+
+		// Plugin core hooks
         $core->wetcCoreHooks();
 
 	}
 
     public function wetcPluginUI(){
 
-        // Plugin UI class instance
+        /** Plugin UI class instance */
         $ui = new WETCUI;
 
     }
