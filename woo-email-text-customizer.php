@@ -21,25 +21,24 @@ class WETC {
 	public function __construct() {
 
 		// Add required files
-		$this->WETCRequired();
+		$this->wetcRequired();
 
 		// Add loading of plugin functions
-		$this->WETCPluginLoad();
+		$this->wetcPluginLoad();
 
 	}
 
 	/**
 	 * Load plugin functions
 	 */
-	public function WETCPluginLoad() {
+	public function wetcPluginLoad() {
 
 		// Plugin core class instance
 		$core = new WETCCore;
 
-
 	}
 
-    public function WETCPluginUI(){
+    public function wetcPluginUI(){
 
         // Plugin UI class instance
         $ui = new WETCUI;
@@ -49,7 +48,7 @@ class WETC {
 	/**
 	 * Required stuff
 	 */
-	public function WETCRequired() {
+	public function wetcRequired() {
 
 		require_once 'woo-email-text-customizer-core.php';
 		require_once 'woo-email-text-customizer-ui.php';
