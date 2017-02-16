@@ -9,7 +9,8 @@
  * Version: 1.0
  * Text Domain: woo-email-text-customizer
  */
-
+require_once 'woo-email-text-customizer-core.php';
+require_once 'woo-email-text-customizer-ui.php';
 /**
  * Class WETC
  *
@@ -25,11 +26,14 @@ class WETC {
 		// Add required files
 		$this->wetcRequired();
 
+
 		// Add loading of plugin functions
 		$this->wetcPluginLoad();
 
+
 		// Add plugin UI components
 		$this->wetcPluginUI();
+
 
 	}
 
@@ -43,6 +47,7 @@ class WETC {
 
 		// Plugin core hooks
         $core->wetcCoreHooks();
+
 
 	}
 
@@ -62,6 +67,7 @@ class WETC {
 		require_once 'woo-email-text-customizer-ui.php';
 
 	}
+
 
 
 }
