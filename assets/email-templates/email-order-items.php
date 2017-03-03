@@ -4,13 +4,12 @@
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/emails/email-order-items.php.
  *
- * HOWEVER, on occasion WooCommerce will need to update template files and you
- * (the theme developer) will need to copy the new files to your theme to
- * maintain compatibility. We try to do this as little as possible, but it does
- * happen. When this occurs the version of the template file will be bumped and
- * the readme will list any important changes.
+ * HOWEVER, on occasion WooCommerce will need to update template files and you (the theme developer).
+ * will need to copy the new files to your theme to maintain compatibility. We try to do this.
+ * as little as possible, but it does happen. When this occurs the version of the template file will.
+ * be bumped and the readme will list any important changes.
  *
- * @see 	    https://docs.woocommerce.com/document/template-structure/
+ * @see 	    http://docs.woothemes.com/document/template-structure/
  * @author 		WooThemes
  * @package 	WooCommerce/Templates/Emails
  * @version     2.1.2
@@ -30,6 +29,8 @@ foreach ( $items as $item_id => $item ) :
 			<td class="td" style="text-align:left; vertical-align:middle; border: 1px solid #eee; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; word-wrap:break-word;"><?php
 
 				// Show title/image etc
+				$show_image = ( 'yes' == get_option( "ec_woocommerce_all_product_thumbnail" ) );
+				$image_size = array( 70, 70 );
 				if ( $show_image ) {
 					echo apply_filters( 'woocommerce_order_item_thumbnail', '<div style="margin-bottom: 5px"><img src="' . ( $_product->get_image_id() ? current( wp_get_attachment_image_src( $_product->get_image_id(), 'thumbnail') ) : wc_placeholder_img_src() ) .'" alt="' . esc_attr__( 'Product Image', 'woocommerce' ) . '" height="' . esc_attr( $image_size[1] ) . '" width="' . esc_attr( $image_size[0] ) . '" style="vertical-align:middle; margin-right: 10px;" /></div>', $item );
 				}
@@ -43,6 +44,7 @@ foreach ( $items as $item_id => $item ) :
 				}
 
 				// allow other plugins to add additional product information here
+				$plain_text = ( isset( $plain_text ) ? $plain_text : FALSE );
 				do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order, $plain_text );
 
 				// Variation
@@ -56,7 +58,8 @@ foreach ( $items as $item_id => $item ) :
 				}
 
 				// allow other plugins to add additional product information here
-				do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order, $plain_text );
+				// plain_text check is required as was only passed as an arg to `order-items` since WC2.5.4
+				do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order, ( isset( $plain_text ) ? $plain_text : FALSE ) );
 
 			?></td>
 			<td class="td" style="text-align:left; vertical-align:middle; border: 1px solid #eee; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;"><?php echo apply_filters( 'woocommerce_email_order_item_quantity', $item['qty'], $item ); ?></td>
