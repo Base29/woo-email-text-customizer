@@ -38,6 +38,8 @@ class WETCCore {
                 deactivate_plugins(plugin_basename('woo-email-text-customizer/woo-email-text-customizer.php'));
                 add_action('admin_notices', array($this, 'wetcWooError'));
             }
+        }else{
+            $this->wetcRegisterPluginOptions();
         }
     }
 

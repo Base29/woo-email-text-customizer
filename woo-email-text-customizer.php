@@ -26,10 +26,8 @@ class WETC {
 		// Add required files
 		$this->wetcRequired();
 
-
 		// Add loading of plugin functions
 		$this->wetcPluginLoad();
-
 
 		// Add plugin UI components
 		$this->wetcPluginUI();
