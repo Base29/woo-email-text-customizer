@@ -1,0 +1,14 @@
+.wetc-textarea {
+      columns: 30;
+      row-span: 4;
+      border: 1px solid #ddd;
+      width: 95%;
+}
+
+.wetc-template {
+      margin: 0;
+      line-height: 35px;
+      font-size: 16px;
+      /*text-align: center !;*/
+      font-weight: 600;
+}

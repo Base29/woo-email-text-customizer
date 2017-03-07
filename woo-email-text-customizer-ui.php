@@ -48,28 +48,28 @@ class WETCUI {
 			<hr/>
 			<div class="">
 				<table class="widefat fixed" cellspacing="0">
-					
+					<thead>
+					<th id="columnname" class="manage-column column-columnname wetc-template" scope="col"
+					    colspan="2"><p><strong>Template
+						Name</strong></p></th>
+					<th id="columnname" class="manage-column column-columnname wetc-template" scope="col"
+					    colspan="8"><p><strong>Template
+						Heading Text</strong></p></th>
+					</tr>
+					</thead>
+					<tbody>
 					<?php
 					foreach ( $this->emails as $index => $email ) { ?>
 						<tr>
-							<td><?php echo $email->title; ?></td>
+							<td colspan="2" class="column-columnname"><p class="wetc-template"><?php echo $email->title; ?></p></td>
+							<td colspan="8" class="column-columnname">
+								<textarea style="resize: none;" class="wetc-textarea"><?php echo get_option('wetc_'
+								                                                                        .str_replace(" ","-",strtolower($email->title)).'_text', 'N/A'); ?></textarea>
+							</td>
 						</tr>
 					<?php }
-					
-					/*foreach (
-						new DirectoryIterator( plugin_dir_path( __FILE__ ) . "assets/email-templates" ) as
-						$file
-					) { */?><!--
-						<tr>
-							<?php
-/*							if ( $file->isFile() ) {
-								print '<td>' . $file->getFilename() . '</td>';
-								print '<td><textarea></textarea></td>';
-							} */?>
-						</tr>
-						--><?php
-/*					}*/
 					?>
+					</tbody>
 				</table>
 			</div>
 		</div>
