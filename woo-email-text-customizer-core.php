@@ -112,4 +112,23 @@ class WETCCore {
 		
 	}
 	
+/*	public function wetcSaveOptions() {
+		if (isset($_REQUEST['wetc-email-template-form'])) {
+			echo '<pre>';
+			print_r($_REQUEST);
+			echo '</pre>';
+			add_option( 'wetc_new-order_text', $_REQUEST['wetc_new-order_text'] );
+			add_option( 'wetc_cancelled-order_text', $_REQUEST['wetc_cancelled-order_text'] );
+			add_option( 'wetc_failed-order_text', $_REQUEST['wetc_failed-order_text'] );
+			add_option( 'wetc_order-on-hold_text', $_REQUEST['wetc_order-on-hold_text'] );
+			add_option( 'wetc_processing-order_text', $_REQUEST['wetc_processing-order_text'] );
+			add_option( 'wetc_completed-order_text', $_REQUEST['wetc_completed-order_text'] );
+			add_option( 'wetc_refunded-order_text', $_REQUEST['wetc_refunded-order_text'] );
+			add_option( 'wetc_customer-invoice_text', $_REQUEST['wetc_customer-invoice_text'] );//
+			add_option( 'wetc_customer-note_text', $_REQUEST['wetc_customer-note_text'] );//
+			add_option( 'wetc_reset-password_text', $_REQUEST['wetc_reset-password_text'] );//
+			add_option( 'wetc_new-account_text', $_REQUEST['wetc_new-account_text'] ); //
+		}
+	}*/
+	
 }

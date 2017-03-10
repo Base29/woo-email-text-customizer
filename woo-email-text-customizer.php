@@ -31,8 +31,7 @@ class WETC {
 
 		// Add plugin UI components
 		$this->wetcPluginUI();
-
-
+		
 	}
 
 	/**
