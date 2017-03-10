@@ -11,62 +11,67 @@
  */
 require_once 'woo-email-text-customizer-core.php';
 require_once 'woo-email-text-customizer-ui.php';
+
 /**
  * Class WETC
  *
  * Main class
+ * @property bool isActive
  */
 class WETC {
-
+	public static $isActive = false;
+	
 	/**
 	 * Do the magic
 	 */
 	public function __construct() {
-
+		
 		// Add required files
 		$this->wetcRequired();
-
+		
 		// Add loading of plugin functions
-		$this->wetcPluginLoad();
-
+		if ( ! $this->isActive ) {
+			$this->wetcPluginLoad();
+		}
+		$this->isActive = true;
+		
 		// Add plugin UI components
 		$this->wetcPluginUI();
 		
 	}
-
+	
 	/**
 	 * Load plugin functions
 	 */
 	public function wetcPluginLoad() {
-
+		
 		/** Plugin core class instance */
 		$core = new WETCCore;
-
+		
 		// Plugin core hooks
-        $core->wetcCoreHooks();
-
-
+		$core->wetcCoreHooks();
+		
+		
 	}
-
-    public function wetcPluginUI(){
-
-        /** Plugin UI class instance */
-        $ui = new WETCUI;
-
-    }
-
+	
+	public function wetcPluginUI() {
+		
+		/** Plugin UI class instance */
+		$ui = new WETCUI;
+		
+	}
+	
 	/**
 	 * Required stuff
 	 */
 	public function wetcRequired() {
-
+		
 		require_once 'woo-email-text-customizer-core.php';
 		require_once 'woo-email-text-customizer-ui.php';
-
+		
 	}
-
-
-
+	
+	
 }
 
 /** Main Plugin Instance */

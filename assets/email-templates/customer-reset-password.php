@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-<?php echo get_option( 'wetc_customer_reset_password_main_text' ); ?>
+<?php echo get_option( 'wetc_reset-password_text' ); ?>
 <p></p>
 
 <?php do_action( 'woocommerce_email_footer', $email ); ?>

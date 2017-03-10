@@ -25,7 +25,7 @@
   */
  do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
- <?php echo get_option( 'wetc_failed_order_main_text' ); ?>
+ <?php echo get_option( 'wetc_failed-order_text' ); ?>
 
  <?php
 

@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-<?php echo get_option( 'wetc_customer_completed_order_main_text' ); ?>
+<?php echo get_option( 'wetc_completed-order_text' ); ?>
 
 <?php
 

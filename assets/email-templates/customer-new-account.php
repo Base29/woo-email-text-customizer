@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-<?php echo get_option( 'wetc_customer_new_account_main_text' ); ?>
+<?php echo get_option( 'wetc_new-account_text' ); ?>
 
 <?php if ( 'yes' === get_option( 'woocommerce_registration_generate_password' ) && $password_generated ) : ?>
 	

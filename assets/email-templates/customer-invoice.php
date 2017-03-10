@@ -28,7 +28,7 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 <?php if ( $order->has_status( 'pending' ) ) : ?>
 	<?php echo get_option( 'wetc_customer_invoice_main_text_pending' ); ?>
 <?php else : ?>
-	<?php echo get_option( 'wetc_customer_invoice_main_text_complete' ); ?>
+	<?php echo get_option( 'wetc_customer-invoice_text' ); ?>
 <?php endif; ?>
 
 <?php

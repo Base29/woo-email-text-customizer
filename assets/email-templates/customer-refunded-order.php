@@ -27,10 +27,10 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <?php
 	if ( $partial_refund ) {
-		echo get_option( 'wetc_customer_refunded_order_main_text_partial' );
+		echo get_option( 'wetc_refunded-order_text' );
 	}
 	else {
-		echo get_option( 'wetc_customer_refunded_order_main_text_full' );
+		echo get_option( 'wetc_refunded-order_text' );
 	}
 ?>
 
