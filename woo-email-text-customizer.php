@@ -10,6 +10,11 @@
  * Text Domain: woo-email-text-customizer
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+} // Exit if accessed directly
+
+
 /**
  * Class WETC
  */
@@ -20,42 +25,40 @@ class WETC {
 	 */
 	public function __construct() {
 
-		// Add required files
-		$this->wetcRequired();
-
-		// Add loading of plugin functions
-		$this->wetcPluginLoad();
+		/** WC Email Classes Modifier */
+		add_filter( 'woocommerce_email_classes', array( $this, 'WCEmailClassesModifier' ) );
 
 	}
+
 
 	/**
-	 * Load plugin functions
+	 * WC Default Email Classes Modifier
+	 *
+	 * @param array $email_classes
+	 *
+	 * @return mixed
 	 */
-	public function wetcPluginLoad() {
+	public function WCEmailClassesModifier( $email_classes ) {
 
-		// Plugin core class instance
-		$core = new WETCCore;
-        $core->wetcCoreHooks();
+		// Require modifier file
+		require( 'assets/wetc-wc-email-classes-modifier.php' );
+
+		// Modified classes
+		$email_classes['WC_Email_New_Order']                 = new WETCNewOrder();
+		$email_classes['WC_Email_Cancelled_Order']           = new WETCCancelledOrder();
+		$email_classes['WC_Email_Failed_Order']              = new WETCFailedOrder();
+		$email_classes['WC_Email_Customer_On_Hold_Order']    = new WETCOrderOnHold();
+		$email_classes['WC_Email_Customer_Processing_Order'] = new WETCProcessingOrder();
+		$email_classes['WC_Email_Customer_Completed_Order']  = new WETCCompletedOrder();
+		$email_classes['WC_Email_Customer_Refunded_Order']   = new WETCRefundedOrder();
+		$email_classes['WC_Email_Customer_Invoice']          = new WETCInvoice();
+		$email_classes['WC_Email_Customer_Note']             = new WETCNote();
+		$email_classes['WC_Email_Customer_Reset_Password']   = new WETCResetPassword();
+		$email_classes['WC_Email_Customer_New_Account']      = new WETCNewAccount();
+
+		return $email_classes;
 
 	}
-
-    public function wetcPluginUI(){
-
-        // Plugin UI class instance
-        $ui = new WETCUI;
-
-    }
-
-	/**
-	 * Required stuff
-	 */
-	public function wetcRequired() {
-
-		require_once 'woo-email-text-customizer-core.php';
-		require_once 'woo-email-text-customizer-ui.php';
-
-	}
-
 
 }
 
