@@ -44,7 +44,7 @@ $emailText = str_replace( '{link}', '<a href="' . esc_url( $order->get_checkout_
 ?>
 
 <?php if ( $order->has_status( 'pending' ) ) : ?>
-	<p><?php __( $emailText, 'woocommerce' ); ?></p>
+	<p><?php _e( $emailText, 'woocommerce' ); ?></p>
 <?php endif; ?>
 
 <?php
