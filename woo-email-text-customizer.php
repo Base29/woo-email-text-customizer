@@ -28,6 +28,47 @@ class WETC {
 		/** WC Email Classes Modifier */
 		add_filter( 'woocommerce_email_classes', array( $this, 'WCEmailClassesModifier' ) );
 
+		/** Copy WC Email Modified Templates */
+		add_action( 'init', array( $this, 'WCEmailTemplateCopier' ) );
+		
+	}
+
+
+	/**
+	 * Copy WC Email Modified Templates
+	 */
+	public function WCEmailTemplateCopier() {
+
+		// Source & Destination path
+		$src = plugin_dir_path( __FILE__ ) . 'assets/emails/';
+		$dst = get_stylesheet_directory() . '/woocommerce/emails/';
+
+		// Check if the theme has the WC email templates
+		if ( !file_exists( $dst ) ) {
+
+			// Create directories
+			mkdir( get_stylesheet_directory() . '/woocommerce/' );
+			mkdir( get_stylesheet_directory() . '/woocommerce/emails/' );
+
+			if ( is_dir( $src ) ) {
+
+				if ( $dir = opendir( $src ) ) {
+
+					while ( ( $file = readdir( $dir ) ) !== false ) {
+						if ( $file != '.' && $file != '..' ) {
+
+							// Copy WC email templates files
+							copy( $src . $file, $dst . $file );
+
+						}
+					}
+
+					closedir( $dir );
+				}
+			}
+
+		}
+
 	}
 
 
