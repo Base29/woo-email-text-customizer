@@ -39,7 +39,7 @@ $emailText = str_replace( '{site_name}', esc_html( $blogname ), $emailText );
 $emailText = str_replace( '{username}', esc_html( $user_login ), $emailText );
 ?>
 
-    <p><?php __( $emailText, 'woocommerce' ); ?></p>
+    <p><?php _e( $emailText, 'woocommerce' ); ?></p>
 
 <?php if ( 'yes' === get_option( 'woocommerce_registration_generate_password' ) && $password_generated ) : ?>
 

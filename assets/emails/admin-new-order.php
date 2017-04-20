@@ -39,7 +39,7 @@ $emailText = str_replace( '{customer_name}', $order->get_formatted_billing_full_
 
 ?>
 
-    <p><?php printf( __( $emailText, 'woocommerce' ), $order->get_formatted_billing_full_name() ); ?></p>
+    <p><?php _e( $emailText, 'woocommerce' ); ?></p>
 
 <?php
 

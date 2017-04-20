@@ -41,7 +41,7 @@ $emailText = str_replace( '{site_name}', get_option( 'blogname' ), $emailText );
 
 ?>
 
-    <p><?php __( $emailText, 'woocommerce' ); ?></p>
+    <p><?php _e( $emailText, 'woocommerce' ); ?></p>
 
 <?php
 
