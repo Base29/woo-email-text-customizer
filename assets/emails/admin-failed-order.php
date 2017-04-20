@@ -29,12 +29,10 @@ do_action( 'woocommerce_email_header', $email_heading, $email );
  * WETC Mod
  */
 $WCOption  = get_option( 'woocommerce_failed_order_settings' );
-$emailText = '';
+$emailText = 'Payment for order {order_number} from {customer_name} has failed. The order was as follows:';
 
-if ( $WCOption ) {
+if ( $WCOption && $WCOption['email_text'] ) {
 	$emailText = $WCOption['email_text'];
-} else {
-	$emailText = 'Payment for order {order_number} from {customer_name} has failed. The order was as follows:';
 }
 
 $emailText = str_replace( '{order_number}', $order->get_order_number(), $emailText );

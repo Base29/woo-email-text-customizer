@@ -10,9 +10,9 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	    https://docs.woocommerce.com/document/template-structure/
- * @author 		WooThemes
- * @package 	WooCommerce/Templates/Emails
+ * @see        https://docs.woocommerce.com/document/template-structure/
+ * @author        WooThemes
+ * @package    WooCommerce/Templates/Emails
  * @version     2.5.0
  */
 
@@ -23,9 +23,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * @hooked WC_Emails::email_header() Output the email header
  */
-do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
+do_action( 'woocommerce_email_header', $email_heading, $email );
 
-<p><?php _e( "Your order has been received and is now being processed. Your order details are shown below for your reference:", 'woocommerce' ); ?></p>
+
+/**
+ * WETC Mod
+ */
+$WCOption  = get_option( 'woocommerce_customer_processing_order_settings' );
+$emailText = 'Your order has been received and is now being processed. Your order details are shown below for your reference:';
+
+if ( $WCOption && $WCOption['email_text'] ) {
+	$emailText = $WCOption['email_text'];
+}
+
+
+?>
+
+    <p><?php _e( $emailText, 'woocommerce' ); ?></p>
 
 <?php
 
