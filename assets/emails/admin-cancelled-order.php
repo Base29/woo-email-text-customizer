@@ -39,7 +39,7 @@ if ( $WCOption ) {
 }
 
 $emailText = str_replace( '{order_number}', $order->get_order_number(), $emailText );
-$emailText = str_replace( '{customer_name', $order->get_formatted_billing_full_name(), $emailText );
+$emailText = str_replace( '{customer_name}', $order->get_formatted_billing_full_name(), $emailText );
 
 ?>
 

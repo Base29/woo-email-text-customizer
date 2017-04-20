@@ -23,7 +23,23 @@
  /**
   * @hooked WC_Emails::email_header() Output the email header
   */
- do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
+ do_action( 'woocommerce_email_header', $email_heading, $email );
+
+/**
+ * WETC Mod
+ */
+$WCOption  = get_option( 'woocommerce_new_order_settings' );
+$emailText = '';
+
+if ( $WCOption ) {
+	$emailText = $WCOption['email_text'];
+} else {
+	$emailText = 'You have received an order from {customer_name}. The order is as follows:';
+}
+
+$emailText = str_replace( '{customer_name}', $order->get_formatted_billing_full_name(), $emailText );
+
+ ?>
 
  <p><?php printf( __( 'You have received an order from %s. The order is as follows:', 'woocommerce' ), $order->get_formatted_billing_full_name() ); ?></p>
 
