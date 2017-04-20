@@ -23,10 +23,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * @hooked WC_Emails::email_header() Output the email header
  */
-do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
+do_action( 'woocommerce_email_header', $email_heading, $email );
+
+
+/**
+ * WETC Mod
+ */
+$WCOption  = get_option( 'woocommerce_customer_invoice_settings' );
+$emailText = 'An order has been created for you on {site_name}. To pay for this order please use the following link: {link}';
+
+if ( $WCOption && $WCOption['email_text'] ) {
+	$emailText = $WCOption['email_text'];
+}
+
+$emailText = str_replace( '{site_name}', get_bloginfo( 'name', 'display' ), $emailText );
+$emailText = str_replace( '{link}', '<a href="' . esc_url( $order->get_checkout_payment_url() ) . '">' . __( 'pay', 'woocommerce' ) . '</a>', $emailText );
+
+
+
+?>
 
 <?php if ( $order->has_status( 'pending' ) ) : ?>
-	<p><?php printf( __( 'An order has been created for you on %s. To pay for this order please use the following link: %s', 'woocommerce' ), get_bloginfo( 'name', 'display' ), '<a href="' . esc_url( $order->get_checkout_payment_url() ) . '">' . __( 'pay', 'woocommerce' ) . '</a>' ); ?></p>
+	<p><?php __( $emailText, 'woocommerce' ); ?></p>
 <?php endif; ?>
 
 <?php

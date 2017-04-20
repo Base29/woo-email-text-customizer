@@ -30,12 +30,10 @@ do_action( 'woocommerce_email_header', $email_heading, $email );
  * WETC Mod
  */
 $WCOption  = get_option( 'woocommerce_cancelled_order_settings' );
-$emailText = '';
+$emailText = 'The order {order_number} from {customer_name} has been cancelled. The order was as follows:';
 
-if ( $WCOption ) {
+if ( $WCOption && $WCOption['email_text'] ) {
 	$emailText = $WCOption['email_text'];
-} else {
-	$emailText = 'The order {order_number} from {customer_name} has been cancelled. The order was as follows:';
 }
 
 $emailText = str_replace( '{order_number}', $order->get_order_number(), $emailText );

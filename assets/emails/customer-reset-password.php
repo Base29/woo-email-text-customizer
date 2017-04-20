@@ -24,14 +24,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-<p><?php _e( 'Someone requested that the password be reset for the following account:', 'woocommerce' ); ?></p>
-<p><?php printf( __( 'Username: %s', 'woocommerce' ), $user_login ); ?></p>
-<p><?php _e( 'If this was a mistake, just ignore this email and nothing will happen.', 'woocommerce' ); ?></p>
-<p><?php _e( 'To reset your password, visit the following address:', 'woocommerce' ); ?></p>
-<p>
-	<a class="link" href="<?php echo esc_url( add_query_arg( array( 'key' => $reset_key, 'login' => rawurlencode( $user_login ) ), wc_get_endpoint_url( 'lost-password', '', wc_get_page_permalink( 'myaccount' ) ) ) ); ?>">
-			<?php _e( 'Click here to reset your password', 'woocommerce' ); ?></a>
-</p>
+<?php
+/**
+ * WETC Mod
+ */
+$WCOption  = get_option( 'woocommerce_customer_reset_password_settings' );
+$emailText = 'Someone requested that the password be reset for the following account:
+			
+Username: {username}
+
+If this was a mistake, just ignore this email and nothing will happen.
+
+To reset your password, visit the following address:
+
+{password_reset_link}';
+
+if ( $WCOption && $WCOption['email_text'] ) {
+	$emailText = $WCOption['email_text'];
+}
+
+$emailText = str_replace( '{username}', $user_login, $emailText );
+$emailText = str_replace( '{password_reset_link}', '<a class="link" href="' . esc_url( add_query_arg( array( 'key' => $reset_key, 'login' => rawurlencode( $user_login ) ), wc_get_endpoint_url( 'lost-password', '', wc_get_page_permalink( 'myaccount' ) ) ) ) .'">' . _e( 'Click here to reset your password', 'woocommerce' ) .'</a>', $emailText );
+?>
+
+<p><?php _e( $emailText, 'woocommerce' ); ?></p>
+
 <p></p>
 
 <?php do_action( 'woocommerce_email_footer', $email ); ?>

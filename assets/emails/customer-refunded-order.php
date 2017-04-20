@@ -23,16 +23,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * @hooked WC_Emails::email_header() Output the email header
  */
-do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
+do_action( 'woocommerce_email_header', $email_heading, $email );
 
-<p><?php
-	if ( $partial_refund ) {
-		printf( __( 'Hi there. Your order on %s has been partially refunded.', 'woocommerce' ), get_option( 'blogname' ) );
-	}
-	else {
-		printf( __( 'Hi there. Your order on %s has been refunded.', 'woocommerce' ), get_option( 'blogname' ) );
-	}
-?></p>
+
+/**
+ * WETC Mod
+ */
+$WCOption  = get_option( 'woocommerce_customer_refunded_order_settings' );
+$emailText = 'Hi there. Your order on {site_name} has been refunded.';
+
+if ( $WCOption && $WCOption['email_text'] ) {
+	$emailText = $WCOption['email_text'];
+}
+
+$emailText = str_replace( '{site_name}', get_option( 'blogname' ), $emailText );
+
+
+?>
+
+    <p><?php __( $emailText, 'woocommerce' ); ?></p>
 
 <?php
 

@@ -10,9 +10,9 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	    https://docs.woocommerce.com/document/template-structure/
- * @author 		WooThemes
- * @package 	WooCommerce/Templates/Emails
+ * @see        https://docs.woocommerce.com/document/template-structure/
+ * @author        WooThemes
+ * @package    WooCommerce/Templates/Emails
  * @version     2.5.0
  */
 
@@ -23,9 +23,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * @hooked WC_Emails::email_header() Output the email header
  */
-do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
+do_action( 'woocommerce_email_header', $email_heading, $email );
 
-<p><?php printf( __( "Hi there. Your recent order on %s has been completed. Your order details are shown below for your reference:", 'woocommerce' ), get_option( 'blogname' ) ); ?></p>
+
+/**
+ * WETC Mod
+ */
+$WCOption  = get_option( 'woocommerce_customer_completed_order_settings' );
+$emailText = 'Hi there. Your recent order on {site_name} has been completed. Your order details are shown below for your reference:';
+
+if ( $WCOption && $WCOption['email_text'] ) {
+	$emailText = $WCOption['email_text'];
+}
+
+$emailText = str_replace( '{site_name}', get_option( 'blogname' ), $emailText );
+
+
+?>
+
+    <p><?php __( $emailText, 'woocommerce' ); ?></p>
 
 <?php
 
